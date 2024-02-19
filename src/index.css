@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.ag-theme-balham .ag-cell-focus {
+  border-color: #007bff; /* Cambia el color del borde al seleccionar una celda */
+  box-shadow: 0 0 5px 0 #007bff; /* Añade una sombra alrededor de la celda seleccionada */
+}
