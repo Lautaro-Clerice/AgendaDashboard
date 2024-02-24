@@ -10,6 +10,7 @@ import Layout from '../Components/Layout/Layout';
 import Home from '../Pages/Home/Home';
 import ListUser from '../Pages/ListUsers/ListUser';
 import Turnos from '../Pages/Turnos/Turnos';
+import AgregarTurnos from '../Pages/AgregarTurnos/AgregarTurnos';
 
 
 const Routes = () => {
@@ -60,6 +61,21 @@ const Routes = () => {
                   unmountOnExit
                 >
                   <Turnos />
+                </CSSTransition>
+            }
+          />
+          <Route
+            path="/agregarTurnos"
+            element={
+              
+                <CSSTransition
+                  classNames="fade"
+                  timeout={300}
+                  appear
+                  in={true}
+                  unmountOnExit
+                >
+                  <AgregarTurnos />
                 </CSSTransition>
             }
           />

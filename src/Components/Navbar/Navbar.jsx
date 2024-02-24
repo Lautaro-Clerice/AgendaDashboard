@@ -32,7 +32,7 @@ const Navbar = () => {
                         <img src={User} alt="user" />
                         <p>Lista de usuarios</p>
                     </Options>
-                    <Options>
+                    <Options onClick={() => navigate('/agregarTurnos')}>
                         <img src={add} alt="turnos" />
                         <p>Agregar turnos</p>
                     </Options>  
