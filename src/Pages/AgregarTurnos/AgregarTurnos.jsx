@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GralContainer, HomeContainer, TitlePrincipal } from '../Home/HomeStyles';
 import { CreateTurnosLibres } from '../../Axios/AxiosLibres';
-
+import {getEmpleados} from '../../Axios/AxiosEmpleados'
+import { useDispatch, useSelector } from 'react-redux'
 const AgregarTurnos = () => {
+    const {empleados, error} = useSelector(state => state.listaEmpleados);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if(!empleados){
+          getEmpleados(dispatch)
+        }
+      }, [empleados, error, dispatch])
   const [formData, setFormData] = useState({
     fecha: '',
     horaInicio: '',
@@ -83,7 +91,12 @@ const AgregarTurnos = () => {
               <input type="number" name="intervalo" value={formData.intervalo} onChange={handleChange} required /><br />
 
               <label>Empleado:</label>
-              <input type="text" name="empleado" value={formData.empleado} onChange={handleChange} required /><br />
+              <select name="empleado" value={formData.empleado} onChange={handleChange} required>
+                <option value="">Seleccionar empleado</option>
+                {empleados.map((empleado) => (
+                    <option key={empleado.id} value={empleado.id}>{empleado.nombre}</option>
+                ))}
+                </select>
 
               <button type="submit">Cargar Turnos</button>
             </form>

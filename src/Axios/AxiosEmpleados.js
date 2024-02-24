@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../Utils/Constant";
-
+import { fetchempleadosFail, fetchempleadosStart, fetchempleadosSuccess } from "../Redux/Slices/EmpleadosSlice";
 export const getEmpleados= async (dispatch) => {
     fetchempleadosStart()
     try {
