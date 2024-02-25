@@ -93,9 +93,10 @@ const AgregarTurnos = () => {
               <label>Empleado:</label>
               <select name="empleado" value={formData.empleado} onChange={handleChange} required>
                 <option value="">Seleccionar empleado</option>
-                {empleados.map((empleado) => (
-                    <option key={empleado.id} value={empleado.id}>{empleado.nombre}</option>
+                {empleados && empleados.map((empleado) => (
+                  <option key={empleado.id} value={empleado.id}>{empleado.nombre}</option>
                 ))}
+
                 </select>
 
               <button type="submit">Cargar Turnos</button>
