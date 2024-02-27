@@ -17,3 +17,13 @@ export const GetTurnosLibres = async (dispatch) => {
 
     }
 }
+
+export const FinalizarTurno = (id) => {
+
+    try {
+        const cambio = axios.patch(`${BASE_URL}turnos/turnosTomados/${id}`);
+        console.log("Respuesta del servidor:", cambio.data);
+    } catch (error) {
+        console.log(error);
+    }
+}

@@ -27,7 +27,9 @@ const TableTurnos = () => {
     { headerName: 'Teléfono', field: 'telefono', sortable: true, filter: true },
     { headerName: 'Fecha', field: 'fecha', sortable: true, filter: true },
     { headerName: 'Horario', field: 'horario', sortable: true, filter: true },
-    { headerName: 'Estado', field: 'status', sortable: true, filter: true }
+    { headerName: 'Estado', field: 'status', sortable: true, filter: true },
+    { headerName: 'Servicio', field: 'servicio', sortable: true, filter: true },
+    { headerName: 'Empleado', field: 'empleado', sortable: true, filter: true },
   ];
 
 
