@@ -3,6 +3,7 @@ import { GralContainer, HomeContainer, TitlePrincipal } from '../Home/HomeStyles
 import { CreateTurnosLibres } from '../../Axios/AxiosLibres';
 import {getEmpleados} from '../../Axios/AxiosEmpleados'
 import { useDispatch, useSelector } from 'react-redux'
+import { CargarDatosContainer, FormContainer } from './AgregarTurnosStyles';
 const AgregarTurnos = () => {
     const {empleados, error} = useSelector(state => state.listaEmpleados);
     const dispatch = useDispatch();
@@ -74,10 +75,9 @@ const AgregarTurnos = () => {
           <TitlePrincipal>
             Agregar turnos
           </TitlePrincipal>
-
-          <div>
-            <h2>Cargar Turnos</h2>
-            <form onSubmit={handleSubmit}>
+          <CargarDatosContainer>
+            <p>Abri tus agendas del dia completo!</p>
+            <FormContainer onSubmit={handleSubmit}>
               <label>Fecha:</label>
               <input type="date" name="fecha" value={formData.fecha} onChange={handleChange} required /><br />
 
@@ -100,8 +100,8 @@ const AgregarTurnos = () => {
                 </select>
 
               <button type="submit">Cargar Turnos</button>
-            </form>
-          </div>
+            </FormContainer>
+          </CargarDatosContainer>
         </HomeContainer>
       </GralContainer>
     </>
