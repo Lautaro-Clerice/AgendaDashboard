@@ -6,6 +6,7 @@ export const GralContainer = styled.div`
     width: 100%;
     min-height: 100vh;
     background-color: #F1F5F7;
+    overflow-y: auto;
 `
 export const HomeContainer = styled.div`
     display: flex;
@@ -70,6 +71,7 @@ export const FooterStyles = styled.footer`
     color: ${colorTextoTemplado};
     margin-top: 40px;
     margin-left: 40px;
+    margin-bottom: 20px;
 
 `
 
