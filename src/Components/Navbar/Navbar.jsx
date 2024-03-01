@@ -1,5 +1,5 @@
-import React from 'react'
-import { HrStyled, ListOptions, LogoNavbar, NavbarContainer, Options, OptionsPadre } from './NavbarStyles'
+import React, { useState } from 'react'
+import { ListOptions, LogoNavbar, MenuHamburguesa, NavbarContainer, Options, OptionsPadre } from './NavbarStyles'
 import logo from '../../Imagenes/logo-dark.png'
 import Agenda from '../../Imagenes/calendar-01.svg'
 import Dashboard from '../../Imagenes/dashboard.svg'
@@ -8,18 +8,26 @@ import add from '../../Imagenes/AddTurn.svg'
 import config from '../../Imagenes/Config.svg'
 import out from '../../Imagenes/logout.svg'
 import {useNavigate} from 'react-router-dom'
+import burger from '../../Imagenes/burger.svg'
+import { useDispatch } from 'react-redux'
 const Navbar = () => {
-
+    const dispatch = useDispatch()
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
-
+    const handleNavList = () => {
+        setIsOpen(!isOpen)
+    }
   return (
     <>
         <NavbarContainer>
             <OptionsPadre>
+                <MenuHamburguesa src={burger} alt="burger" onClick={handleNavList}/>
                 <LogoNavbar>
                     <img src={logo} alt="logo" />
                 </LogoNavbar>
-                <ListOptions>
+                
+            </OptionsPadre>
+            <ListOptions className={isOpen ? 'transition' : ''} style={{ display: isOpen ? 'flex' : 'none', opacity:isOpen ? '1' : '0', }}>
                     <Options onClick={() => navigate('/')}>
                         <img src={Dashboard} alt='dashboard'/>
                         <p>Dashboard</p>
@@ -37,9 +45,6 @@ const Navbar = () => {
                         <p>Agregar turnos</p>
                     </Options>  
                       
-                </ListOptions>
-                <HrStyled/>
-                <ListOptions>
                     <Options>
                         <img src={config} alt="config" />
                         <p>Ajustes</p>
@@ -49,8 +54,6 @@ const Navbar = () => {
                         <p>Cerrar sesion</p>  
                     </Options> 
                 </ListOptions>
-            </OptionsPadre>
-                
         </NavbarContainer>
     </>
   )
