@@ -2,6 +2,7 @@ import React from 'react'
 import { GralContainer, HomeContainer, TitlePrincipal } from '../Home/HomeStyles'
 import { UsersContainer } from '../ListUsers/ListUserStyles'
 import TableTurnos from './TableTurnos'
+import { Subtitle } from './TurnosStyles'
 const Turnos = () => {
   return (
     <>
@@ -10,6 +11,9 @@ const Turnos = () => {
                 <TitlePrincipal>
                     Tus turnos
                 </TitlePrincipal>
+                <Subtitle>
+                    <p>Revisa los turnos pendientes</p>
+                </Subtitle>
                 <UsersContainer>
                     <TableTurnos/>
                 </UsersContainer>

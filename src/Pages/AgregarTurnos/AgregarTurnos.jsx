@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { GralContainer, HomeContainer, TitlePrincipal } from '../Home/HomeStyles';
+import { FooterStyles, GralContainer, HomeContainer, TitlePrincipal } from '../Home/HomeStyles';
 import { CreateTurnosLibres } from '../../Axios/AxiosLibres';
 import {getEmpleados} from '../../Axios/AxiosEmpleados'
 import { useDispatch, useSelector } from 'react-redux'
+import { CargarDatosContainer, FechaContainer, FormContainer, TurnosContainer } from './AgregarTurnosStyles';
+import Loader from '../../UX/UI/Loader/Loader'
 const AgregarTurnos = () => {
+    const [loading, setLoading] = useState(false);
     const {empleados, error} = useSelector(state => state.listaEmpleados);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -25,7 +28,8 @@ const AgregarTurnos = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
+    setLoading(true)
     const { fecha, horaInicio, horaCierre, intervalo, empleado } = formData;
     const turnos = generateTurnos(fecha, horaInicio, horaCierre, intervalo, empleado);
     
@@ -36,9 +40,19 @@ const AgregarTurnos = () => {
         
       }
       alert('Turnos cargados exitosamente');
+      setLoading(false);
+      setFormData({
+        fecha: '',
+        horaInicio: '',
+        horaCierre: '',
+        intervalo: '',
+        empleado: ''
+      });
+      
     } catch (error) {
       console.error('Error al cargar los turnos:', error);
       alert('Error al cargar los turnos. Por favor, inténtalo de nuevo.');
+      setLoading(false);
     }
   };
   
@@ -74,13 +88,16 @@ const AgregarTurnos = () => {
           <TitlePrincipal>
             Agregar turnos
           </TitlePrincipal>
-
-          <div>
-            <h2>Cargar Turnos</h2>
-            <form onSubmit={handleSubmit}>
-              <label>Fecha:</label>
-              <input type="date" name="fecha" value={formData.fecha} onChange={handleChange} required /><br />
-
+          <CargarDatosContainer>
+            <p>Abri tus agendas del dia completo!</p>
+            <FormContainer onSubmit={handleSubmit}>
+              <FechaContainer>
+                <label>Selecciona una fecha</label>
+                <p>Elegi el dia que quieras abrir tu agenda</p>
+                <input type="date" name="fecha" value={formData.fecha} onChange={handleChange} required /><br />
+              </FechaContainer>
+              
+              <TurnosContainer>
               <label>Hora de Inicio:</label>
               <input type="time" name="horaInicio" value={formData.horaInicio} onChange={handleChange} required /><br />
 
@@ -99,9 +116,20 @@ const AgregarTurnos = () => {
 
                 </select>
 
-              <button type="submit">Cargar Turnos</button>
-            </form>
-          </div>
+              <button type="submit">
+                {
+                  loading ? (
+                    <Loader/>
+                  ) : (
+                    'Cargar turnos'
+                  )
+                }</button>
+              </TurnosContainer>
+            </FormContainer>
+          </CargarDatosContainer>
+          <FooterStyles>
+            © ClericeDev. 2024 Webinning.
+          </FooterStyles>
         </HomeContainer>
       </GralContainer>
     </>
