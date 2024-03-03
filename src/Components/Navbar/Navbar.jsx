@@ -7,6 +7,7 @@ import User from '../../Imagenes/user.svg'
 import add from '../../Imagenes/AddTurn.svg'
 import config from '../../Imagenes/Config.svg'
 import out from '../../Imagenes/logout.svg'
+import services from '../../Imagenes/services.svg'
 import {useNavigate} from 'react-router-dom'
 const Navbar = () => {
 
@@ -35,6 +36,10 @@ const Navbar = () => {
                     <Options onClick={() => navigate('/agregarTurnos')}>
                         <img src={add} alt="turnos" />
                         <p>Agregar turnos</p>
+                    </Options>
+                    <Options onClick={() => navigate('/servicios')}>
+                        <img src={services} alt="servicios" />
+                        <p>Servicios</p>
                     </Options>  
                       
                 </ListOptions>
