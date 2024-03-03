@@ -10,6 +10,7 @@ export const NavbarContainer = styled.div`
     gap: 10px;
     align-items: center;
     position: fixed;
+    z-index: 100000;
     @media(max-width:900px){
         height: auto;
         width: 100%;
@@ -32,7 +33,7 @@ export const OptionsPadre = styled.div`
         gap: initial;
         justify-content: space-between;
         padding: 0 10px 0 30px;
-        height: 60px;
+        height: 70px;
     }
 `
 export const LogoNavbar = styled.div`

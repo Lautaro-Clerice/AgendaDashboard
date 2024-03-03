@@ -16,6 +16,7 @@ export const HomeContainer = styled.div`
     height: auto;
     @media(max-width:900px){
         width: 100%;
+        align-items: center;
     }
 `
 
@@ -23,17 +24,25 @@ export const TitlePrincipal = styled.h1`
     font-size: 22px;
     margin-top: 40px;
     color: ${ColorTitulo};
+    @media(max-width:900px){
+        margin-top: 80px;
+        align-self: start;
+        margin-left: 5%;
+    }
 `
 
 export const OptionsDashboard = styled.div`
     width: 250px;
     background-color: white;
     height: 120px;
-    box-shadow: 0px 0px 8px ${colorShadow};
+    box-shadow: 3px 3px 6px ${colorShadow};
     border-radius: 11px;
     display: flex;
     justify-content: center;
     align-items: center;
+    @media(max-width:900px){
+        width: 90%;
+    }
 
 `
 export const OptionsDBPadre = styled.div`
@@ -63,7 +72,7 @@ export const AnalisisTurnos = styled.div`
     width: 55%;
     height: 400px;
     background-color: white;
-    box-shadow: 0px 0px 8px ${colorShadow};
+    box-shadow: 3px 3px 6px ${colorShadow};
     border-radius: 11px;
     @media(max-width:900px){
         width: 90%;
@@ -75,7 +84,7 @@ export const TopClientes = styled.div`
     width: 45%;
     height: 400px;
     background-color: white;
-    box-shadow: 0px 0px 8px ${colorShadow};
+    box-shadow: 3px 3px 6px ${colorShadow};
     border-radius: 11px;
       @media(max-width:900px){
         width: 90%;

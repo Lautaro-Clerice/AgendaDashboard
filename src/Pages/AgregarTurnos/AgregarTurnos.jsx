@@ -40,6 +40,14 @@ const AgregarTurnos = () => {
         
       }
       alert('Turnos cargados exitosamente');
+      setLoading(false);
+      setFormData({
+        fecha: '',
+        horaInicio: '',
+        horaCierre: '',
+        intervalo: '',
+        empleado: ''
+      });
       
     } catch (error) {
       console.error('Error al cargar los turnos:', error);

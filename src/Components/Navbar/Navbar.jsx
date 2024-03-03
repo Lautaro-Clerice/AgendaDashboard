@@ -17,6 +17,12 @@ const Navbar = () => {
     const handleNavList = () => {
         setIsOpen(!isOpen)
     }
+    const handleOptionClick = (path) => {
+        if (window.innerWidth <= 900) {
+            setIsOpen(false)
+            navigate(path)
+        }
+    }
   return (
     <>
         <NavbarContainer>
@@ -28,19 +34,19 @@ const Navbar = () => {
                 
             </OptionsPadre>
             <ListOptions className={isOpen ? 'transition' : ''} style={{ display: isOpen ? 'flex' : 'none', opacity:isOpen ? '1' : '0', }}>
-                    <Options onClick={() => navigate('/')}>
+                    <Options onClick={() => handleOptionClick('/')}>
                         <img src={Dashboard} alt='dashboard'/>
                         <p>Dashboard</p>
                     </Options>
-                    <Options onClick={() => navigate('/turnos')} >
+                    <Options onClick={() => handleOptionClick('/turnos')} >
                         <img src={Agenda} alt="calendar" />
                         <p>Turnos pendientes</p>
                     </Options>
-                    <Options onClick={() => navigate('/users')}>
+                    <Options onClick={() => handleOptionClick('/users')}>
                         <img src={User} alt="user" />
                         <p>Lista de usuarios</p>
                     </Options>
-                    <Options onClick={() => navigate('/agregarTurnos')}>
+                    <Options onClick={() => handleOptionClick('/agregarTurnos')}>
                         <img src={add} alt="turnos" />
                         <p>Agregar turnos</p>
                     </Options>  

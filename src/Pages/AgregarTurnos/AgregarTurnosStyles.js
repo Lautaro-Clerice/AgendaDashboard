@@ -9,6 +9,13 @@ export const CargarDatosContainer = styled.div`
     p{
         color: ${colorTextoTemplado};
     }
+    @media (max-width:900px){
+        align-self:start;
+        width: 100%;
+        p{
+            margin-left: 5%;
+        }
+    }
 
 `
 
@@ -28,6 +35,9 @@ export const FormContainer = styled.form`
         color: white;
         border-radius: 10px;
         margin-bottom: 20px;
+    }
+    @media (max-width:900px){
+        width:100%
     }
 `
 
@@ -59,6 +69,11 @@ export const FechaContainer = styled.div`
         padding-right: 10px;
         font-family: sans-serif;
         font-weight: 300;
+    }
+    @media (max-width:900px){
+        width: 90%;
+        align-self: center;
+
     }
 `
 
@@ -112,5 +127,10 @@ export const TurnosContainer = styled.div`
         padding-right: 10px;
         font-family: sans-serif;
         font-weight: 300;
+    }
+    @media (max-width:900px){
+        width: 90%;
+        align-self: center;
+
     }
 `
