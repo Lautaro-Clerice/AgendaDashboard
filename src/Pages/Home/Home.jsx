@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import agenda from '../../Imagenes/agendaHome.svg'
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { clearturnos } from '../../Redux/Slices/ObtenerTurnos';
-
+import dinero from '../../Imagenes/Dinero.svg'
 const Home = () => {
   const { turnos, error } = useSelector(state => state.turnosLibres);
   const dispatch = useDispatch(); 
   const [turnosDelMes, setTurnosDelMes] = useState([]);
+  const [dineroDelMes, setDineroDelMes] = useState([]);
   const [clientesDelMes, setClientesDelMes] = useState([])
 
 
@@ -24,8 +25,17 @@ const Home = () => {
         const mesTurno = new Date(turno.fecha).getMonth() + 1;
         return mesTurno === mesActual;
       });
-
+  
       setTurnosDelMes(turnosMesActual);
+      const dineroRecaudado = turnosMesActual
+        .filter(turno => turno.status === "Finalizado" && turno.precio)
+        .reduce((total, turno) => {
+        const precioLimpio = parseFloat(turno.precio.replace(/\$|,/g, ''));
+        return (total + precioLimpio);
+      }, 0);
+
+setDineroDelMes(dineroRecaudado);
+    
     }
   }, [turnos, error, dispatch]);
 
@@ -59,16 +69,23 @@ const Home = () => {
         <OptionsDashboard>
         <DatosHome>
             <p><FaArrowTrendUp className='icon'/> Este mes</p>
-            {turnos && <h2>{clientesDelMes.length}</h2>}
-            <p className='texto'>Turnos tomados</p>
+            {turnos && <h2>${dineroDelMes}</h2>}
+            <p className='texto'>Dinero recaudado</p>
           </DatosHome>
           <IconsHome>
-            <img src={agenda} alt="iconCalendar" />
+            <img src={dinero} alt="iconCalendar" />
           </IconsHome>
         </OptionsDashboard>
 
         <OptionsDashboard>
-
+        <DatosHome>
+            <p><FaArrowTrendUp className='icon'/> Este mes</p>
+            {turnos && <h2>${dineroDelMes}</h2>}
+            <p className='texto'>Dinero recaudado</p>
+          </DatosHome>
+          <IconsHome>
+            <img src={dinero} alt="iconCalendar" />
+          </IconsHome>
         </OptionsDashboard>
 
         <OptionsDashboard>

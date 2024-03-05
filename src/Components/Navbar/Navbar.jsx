@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ListOptions, LogoNavbar, MenuHamburguesa, NavbarContainer, Options, OptionsPadre } from './NavbarStyles'
 import logo from '../../Imagenes/logo-dark.png'
 import Agenda from '../../Imagenes/calendar-01.svg'
@@ -12,17 +12,29 @@ import {useNavigate} from 'react-router-dom'
 import burger from '../../Imagenes/burger.svg'
 import { useDispatch } from 'react-redux'
 const Navbar = () => {
-    const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth > 900) {
+                setIsOpen(true);
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     const handleNavList = () => {
         setIsOpen(!isOpen)
     }
     const handleOptionClick = (path) => {
         if (window.innerWidth <= 900) {
             setIsOpen(false)
-            navigate(path)
+            
         }
+        navigate(path)
     }
   return (
     <>

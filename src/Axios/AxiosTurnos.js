@@ -18,10 +18,20 @@ export const GetTurnosLibres = async (dispatch) => {
     }
 }
 
-export const FinalizarTurno = (id) => {
+export const FinalizarTurno = async (id) => {
 
     try {
-        const cambio = axios.patch(`${BASE_URL}turnos/turnosTomados/${id}`);
+        const cambio = await axios.patch(`${BASE_URL}turnos/turnosTomados/${id}`);
+        console.log("Respuesta del servidor:", cambio.data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const AddPendienteTurno = async (id) => {
+
+    try {
+        const cambio = await axios.put(`${BASE_URL}turnos/turnosTomados/${id}`);
         console.log("Respuesta del servidor:", cambio.data);
     } catch (error) {
         console.log(error);

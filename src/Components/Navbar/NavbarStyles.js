@@ -99,4 +99,8 @@ export const HrStyled = styled.hr`
 export const MenuHamburguesa = styled.img`
     width: 40px;
     height: 40px;
+    display: none;
+    @media(max-width:900px){
+        display: flex;
+    }
 `
