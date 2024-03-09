@@ -34,6 +34,8 @@ const Home = () => {
         return (total + precioLimpio);
       }, 0);
 
+      const clientesActuales = turnosMesActual.filter(turno => turno)
+
 setDineroDelMes(dineroRecaudado);
     
     }
