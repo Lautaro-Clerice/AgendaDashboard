@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import {AnalisisPadre, AnalisisTurnos, DatosHome, FooterStyles, GralContainer, HomeContainer, IconsHome, OptionsDBPadre, OptionsDashboard, TitlePrincipal, TopClientes} from './HomeStyles'
 import { GetTurnosLibres } from '../../Axios/AxiosTurnos';
+import { getUser } from '../../Axios/AxiosUsuarios';
 import { useDispatch, useSelector } from 'react-redux';
 import agenda from '../../Imagenes/agendaHome.svg'
 import { FaArrowTrendUp } from "react-icons/fa6";
@@ -8,13 +9,26 @@ import { clearturnos } from '../../Redux/Slices/ObtenerTurnos';
 import dinero from '../../Imagenes/Dinero.svg'
 const Home = () => {
   const { turnos, error } = useSelector(state => state.turnosLibres);
+  const cliente = useSelector(state => state.usuariosClientes.clientes);
+  const errorCliente = useSelector(state => state.usuariosClientes.error);
   const dispatch = useDispatch(); 
   const [turnosDelMes, setTurnosDelMes] = useState([]);
   const [dineroDelMes, setDineroDelMes] = useState([]);
   const [clientesDelMes, setClientesDelMes] = useState([])
 
 
-  
+  useEffect(() => {
+    if (!cliente) {
+      getUser(dispatch)
+    } else {
+      const mesActual = new Date().getMonth() + 1;
+      const usuariosMesActual = cliente.filter(client =>{
+      const mesCliente = new Date(client.createdAt).getMonth + 1;
+      return mesCliente === mesActual;
+      });
+      setClientesDelMes(usuariosMesActual);
+    }
+  },[dispatch, cliente, errorCliente])
 
   useEffect(() => {
     if (!turnos) {
