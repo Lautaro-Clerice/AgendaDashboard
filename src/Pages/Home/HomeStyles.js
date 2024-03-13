@@ -32,7 +32,7 @@ export const TitlePrincipal = styled.h1`
 `
 
 export const OptionsDashboard = styled.div`
-    width: 250px;
+    width: 300px;
     background-color: white;
     height: 120px;
     box-shadow: 3px 3px 6px ${colorShadow};
@@ -86,6 +86,15 @@ export const TopClientes = styled.div`
     background-color: white;
     box-shadow: 3px 3px 6px ${colorShadow};
     border-radius: 11px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    h2 {
+        margin-left: 20px;
+        font-size: 17px;
+
+        font-weight: 700;
+    }
       @media(max-width:900px){
         width: 90%;
     }
@@ -136,4 +145,45 @@ export const IconsHome  = styled.div`
         width: 40px;
         height: 40px;
     }
+`
+
+
+export const EncabezadoTop = styled.div`
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #bababa17;
+    p{
+        color: ${colorTextoTemplado};
+        font-size: 15px;
+    }
+    
+`   
+
+export const ClientesXturnos = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .turnos{
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        background-color: lightgreen;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+    p{
+        width: 100px;
+        display: flex;
+        gap: 20px;
+    }
+`
+export const HrStyled =styled.hr`
+    width: 85%;
+    border: 1px solid  #bababa36;
 `

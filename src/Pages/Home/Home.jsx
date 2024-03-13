@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {AnalisisPadre, AnalisisTurnos, DatosHome, FooterStyles, GralContainer, HomeContainer, IconsHome, OptionsDBPadre, OptionsDashboard, TitlePrincipal, TopClientes} from './HomeStyles'
+import {AnalisisPadre, AnalisisTurnos, ClientesXturnos, DatosHome, EncabezadoTop, FooterStyles, GralContainer, HomeContainer, HrStyled, IconsHome, OptionsDBPadre, OptionsDashboard, TitlePrincipal, TopClientes} from './HomeStyles'
 import { GetTurnosLibres } from '../../Axios/AxiosTurnos';
 import { getUser } from '../../Axios/AxiosUsuarios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,8 @@ import agenda from '../../Imagenes/agendaHome.svg'
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { clearturnos } from '../../Redux/Slices/ObtenerTurnos';
 import dinero from '../../Imagenes/Dinero.svg'
+import user from '../../Imagenes/userDashboard.svg'
+import topClient from '../../Imagenes/Top.svg'
 const Home = () => {
   const { turnos, error } = useSelector(state => state.turnosLibres);
   const cliente = useSelector(state => state.usuariosClientes.clientes);
@@ -15,7 +17,10 @@ const Home = () => {
   const [turnosDelMes, setTurnosDelMes] = useState([]);
   const [dineroDelMes, setDineroDelMes] = useState([]);
   const [clientesDelMes, setClientesDelMes] = useState([])
-
+  useEffect(() => {
+    dispatch(clearturnos());
+    getUser(dispatch);
+  }, []);
 
   useEffect(() => {
     if (!cliente) {
@@ -23,10 +28,10 @@ const Home = () => {
     } else {
       const mesActual = new Date().getMonth() + 1;
       const usuariosMesActual = cliente.filter(client =>{
-      const mesCliente = new Date(client.createdAt).getMonth + 1;
+        const mesCliente = new Date(client.createdAt).getMonth() + 1;
       return mesCliente === mesActual;
       });
-      setClientesDelMes(usuariosMesActual);
+      setClientesDelMes(usuariosMesActual.length);
     }
   },[dispatch, cliente, errorCliente])
 
@@ -56,9 +61,7 @@ setDineroDelMes(dineroRecaudado);
   }, [turnos, error, dispatch]);
 
 
-  useEffect(() => {
-    dispatch(clearturnos());
-  }, []);
+  
 
 
   return (
@@ -96,16 +99,12 @@ setDineroDelMes(dineroRecaudado);
         <OptionsDashboard>
         <DatosHome>
             <p><FaArrowTrendUp className='icon'/> Este mes</p>
-            {turnos && <h2>${dineroDelMes}</h2>}
-            <p className='texto'>Dinero recaudado</p>
+            {cliente && <h2>{clientesDelMes}</h2>}
+            <p className='texto'>Clientes nuevos</p>
           </DatosHome>
           <IconsHome>
-            <img src={dinero} alt="iconCalendar" />
+            <img src={user} alt="iconCalendar" />
           </IconsHome>
-        </OptionsDashboard>
-
-        <OptionsDashboard>
-
         </OptionsDashboard>
 
       </OptionsDBPadre>
@@ -117,7 +116,26 @@ setDineroDelMes(dineroRecaudado);
         </AnalisisTurnos>
         
         <TopClientes>
+          <h2>TOP CLIENTES</h2>
+          <EncabezadoTop>
+            <p>Cliente</p>
+            <p>Turnos</p>
+          </EncabezadoTop>
+          {cliente.map(cliente => ({
+            cliente,
+            turnos: turnos ? turnos.filter(turno => turno.email === cliente.email).length : 0
+          }))
+          .sort((a, b) => b.turnos - a.turnos) 
+          .map(({ cliente, turnos }) => (
+            <>
+            <ClientesXturnos key={cliente.email}>
+              <p><img src={topClient} alt="clientestop"/>{cliente.name}</p>
+              <div className='turnos'>{turnos}</div>
 
+            </ClientesXturnos>
+            <HrStyled/>
+            </>
+          ))}
         </TopClientes>
 
       </AnalisisPadre>

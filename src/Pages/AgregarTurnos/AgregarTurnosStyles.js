@@ -6,6 +6,7 @@ export const CargarDatosContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap:5px;
+    width: 40%;
     p{
         color: ${colorTextoTemplado};
     }
@@ -24,6 +25,7 @@ export const FormContainer = styled.form`
     flex-direction: column;
     gap: 20px;
     flex-wrap: wrap;
+    width: 100%;
     input {
         width: 20%;
     }
@@ -43,7 +45,7 @@ export const FormContainer = styled.form`
 
 export const FechaContainer = styled.div`
     background-color: white;
-    width: 30%;
+    width:100%;
     height: 150px;
     border: 1px solid ${colorShadow};
     border-radius: 10px;
@@ -79,7 +81,7 @@ export const FechaContainer = styled.div`
 
 export const TurnosContainer = styled.div`
      background-color: white;
-    width: 30%;
+    width: 100%;
     height: auto;
     border: 1px solid ${colorShadow};
     border-radius: 10px;
@@ -133,4 +135,28 @@ export const TurnosContainer = styled.div`
         align-self: center;
 
     }
+`
+
+export const CargarTurnoUnico = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    width: 40%;
+        p{
+        color: ${colorTextoTemplado};
+    }
+    @media (max-width:900px){
+        align-self:start;
+        width: 100%;
+        p{
+            margin-left: 5%;
+        }
+    }
+`
+
+export const FormTurnosContainer = styled.div`
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+    width: 100%;
 `
