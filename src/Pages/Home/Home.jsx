@@ -121,7 +121,7 @@ setDineroDelMes(dineroRecaudado);
             <p>Cliente</p>
             <p>Turnos</p>
           </EncabezadoTop>
-          {cliente.map(cliente => ({
+          {cliente && cliente.map(cliente => ({
             cliente,
             turnos: turnos ? turnos.filter(turno => turno.email === cliente.email).length : 0
           }))
